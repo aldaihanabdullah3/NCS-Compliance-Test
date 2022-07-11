@@ -1,4 +1,5 @@
 import json
+from bcolors import bcolors
 import ncs_tls
 import testssl
 
@@ -19,10 +20,14 @@ def main2(target):
     f.close()
 
 if __name__== "__main__" :
-    main1('logs/data.json')
-    main1('logs/data2.json')
-    main1('logs/aldaihan.info1657530108.json')
-    main1('logs/splonline.com.sa1657529853.json')
+    print(bcolors.OKCYAN + "Welcome to NCS compliance test for TLS" + bcolors.ENDC)
+    target = input('Enter test target: ')
+    print('Please wait, this will take some time')
+    main2(target)
+    #main1('logs/data.json')
+    #main1('logs/data2.json')
+    #main1('logs/aldaihan.info1657530108.json')
+    #main1('logs/splonline.com.sa1657529853.json')
     #main2('webmail.cloud.moi.gov.sa')
     #main2('splonline.com.sa')
     #main2('aldaihan.info')  
