@@ -12,18 +12,27 @@ def main1(target_file):
 
 
 def main2(target):
-    ts = testssl.testssl(target)
-    f = open(ts.filename)
+    filename, rt = testssl.start(target)
+    if rt != 0:
+        print("General Error!")
+        return
+        
+    f = open(filename)
     data = json.load(f)
     result = ncs_tls.ncs_tls(data)    
     print(result)
     f.close()
 
 if __name__== "__main__" :
-    print(bcolors.OKCYAN + "Welcome to NCS compliance test for TLS" + bcolors.ENDC)
-    target = input('Enter test target: ')
-    print('Please wait, this will take some time')
-    main2(target)
+    try:
+        print(bcolors.OKCYAN + "Welcome to NCS compliance test for TLS" + bcolors.ENDC)
+        while True:
+            print(bcolors.OKBLUE + "Please enter the domain or IP address of the target" + bcolors.ENDC)
+            target = input('Enter test target: ')
+            print('Please wait, this will take some time')
+            main2(target)
+    except Exception as e:
+        print("Somthing wrong happend, this incident have been reported and will be fixed ASAP!")
     #main1('logs/data.json')
     #main1('logs/data2.json')
     #main1('logs/aldaihan.info1657530108.json')
